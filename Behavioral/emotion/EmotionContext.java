@@ -1,5 +1,5 @@
-// EmotionContext.java
-class EmotionContext {
+
+public class EmotionContext {
     private EmotionStrategy strategy;
 
     public void setStrategy(EmotionStrategy strategy) {
@@ -8,7 +8,8 @@ class EmotionContext {
 
     public void measure(String input) {
         if (strategy == null) {
-            throw new IllegalStateException("Strategy not set. Please set a strategy before measuring.");
+            System.out.println("No strategy set.");
+            return;
         }
         strategy.measureEmotion(input);
     }
