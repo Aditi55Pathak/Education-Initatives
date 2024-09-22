@@ -10,19 +10,26 @@ public class Main {
         leaveApplication.attach(new HRDepartment());
 
         try (Scanner scanner = new Scanner(System.in)) {
-            while (true) {
-                System.out.print("Enter student name to submit leave application (or type 'exit' to quit): ");
-                String input = scanner.nextLine();
-                if ("exit".equalsIgnoreCase(input)) {
-                    logger.log(Level.INFO, "Exiting application.");
-                    break;
-                }
-                try {
-                    leaveApplication.submitApplication(input);
-                } catch (Exception e) {
-                    logger.log(Level.SEVERE, "Error submitting leave application", e);
-                }
-            }
+            runApplication(leaveApplication, scanner);
         }
+    }
+
+    private static void runApplication(LeaveApplication leaveApplication, Scanner scanner) {
+        String input;
+        do {
+            System.out.print("Enter student name to submit leave application (or type 'exit' to quit): ");
+            input = scanner.nextLine();
+
+            if ("exit".equalsIgnoreCase(input)) {
+                logger.log(Level.INFO, "Exiting application.");
+                break;
+            }
+
+            try {
+                leaveApplication.submitApplication(input);
+            } catch (Exception e) {
+                logger.log(Level.SEVERE, "Error submitting leave application", e);
+            }
+        } while (!"exit".equalsIgnoreCase(input));
     }
 }

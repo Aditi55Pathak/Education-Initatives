@@ -5,13 +5,22 @@ public class Main {
         EmotionContext context = new EmotionContext();
         Scanner scanner = new Scanner(System.in);
 
-        while (true) {
+        runApplication(context, scanner);
+
+        scanner.close();
+    }
+
+    private static void runApplication(EmotionContext context, Scanner scanner) {
+        boolean running = true;
+
+        while (running) {
             System.out.print("Select measurement type (1 for Text, 2 for Voice, 'exit' to Exit): ");
             String input = scanner.nextLine();
 
             if ("exit".equalsIgnoreCase(input)) {
                 System.out.println("Exiting application.");
-                break;
+                running = false;
+                continue;
             }
 
             try {
@@ -36,7 +45,5 @@ public class Main {
                 System.out.println("Invalid input. Please enter a number or 'exit'.");
             }
         }
-
-        scanner.close();
     }
 }
